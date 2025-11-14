@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Book Folding Pattern Generator</title>
+        <link rel="stylesheet" href="/src/style.css" />
+    </head>
+    <body>
+        <div id="app">
+            <h1>Book Folding Pattern Generator</h1>
+            <main>
+                <div class="controls">
+                    <form id="controls-form">
+                        <fieldset id="fieldset-source-image">
+                            <legend>
+                                <span class="legend-content"
+                                    >Source Image
+                                    <span class="toggle-icon"></span
+                                ></span>
+                            </legend>
+                            <div class="fieldset-content">
+                                <div class="form-row">
+                                    <label for="image-upload"
+                                        >Upload Image:</label
+                                    >
+                                    <input
+                                        type="file"
+                                        id="image-upload"
+                                        accept="image/*"
+                                    />
+                                </div>
+                                <div class="form-row">
+                                    <label
+                                        for="image-resize"
+                                        title="Increase the size of the source image by the given percent, keeping aspect ratio"
+                                        >Resize Image (%):</label
+                                    >
+                                    <input
+                                        type="number"
+                                        id="image-resize"
+                                        min="10"
+                                        max="500"
+                                        value="100"
+                                        step="10"
+                                    />
+                                </div>
+                                <div class="form-row checkbox-row">
+                                    <input
+                                        type="checkbox"
+                                        id="transparent-is-white"
+                                        checked
+                                    />
+                                    <label
+                                        for="transparent-is-white"
+                                        title="How to treat transparent images: treated as black by default."
+                                        >Transparent is White</label
+                                    >
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset id="fieldset-pattern-generation">
+                            <legend>
+                                <span class="legend-content"
+                                    >Pattern Generation
+                                    <span class="toggle-icon"></span
+                                ></span>
+                            </legend>
+
+                            <div class="fieldset-content">
+                                <div class="form-row">
+                                    <label
+                                        for="stripes-spacing"
+                                        title="How far appart to draw black lines based on the source image"
+                                        >Line Spacing (px):</label
+                                    >
+
+                                    <input
+                                        type="number"
+                                        id="stripes-spacing"
+                                        min="1"
+                                        max="100"
+                                        value="8"
+                                    />
+                                </div>
+
+                                <div class="form-row">
+                                    <label
+                                        for="line-thickness"
+                                        title="Width of the black lines drawn in the pattern"
+                                        >Line Thickness (px):</label
+                                    >
+
+                                    <input
+                                        type="number"
+                                        id="line-thickness"
+                                        min="1"
+                                        max="10"
+                                        value="2"
+                                    />
+                                </div>
+
+                                <div class="form-row">
+                                    <label
+                                        for="horizontal-stretch"
+                                        title="Stretch the pattern horizontally for better clarity after print"
+                                        >Horizontal Strech:</label
+                                    >
+
+                                    <input
+                                        type="number"
+                                        id="horizontal-stretch"
+                                        min="1"
+                                        max="10"
+                                        value="1"
+                                        step="0.1"
+                                    />
+                                </div>
+
+                                <div class="form-row">
+                                    <label for="padding">Padding (px):</label>
+
+                                    <input
+                                        type="number"
+                                        id="padding"
+                                        min="0"
+                                        max="100"
+                                        value="10"
+                                    />
+                                </div>
+
+                                <div class="form-row checkbox-row">
+                                    <input
+                                        type="checkbox"
+                                        id="helper-lines"
+                                        checked
+                                    />
+
+                                    <label
+                                        for="helper-lines"
+                                        title="Whether to draw helper lines every two pages"
+                                        >Draw helper lines</label
+                                    >
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset id="fieldset-export">
+                            <legend>
+                                <span class="legend-content"
+                                    >Export <span class="toggle-icon"></span
+                                ></span>
+                            </legend>
+
+                            <div class="fieldset-content">
+                                <div class="form-row">
+                                    <label
+                                        for="export-height"
+                                        title="Height of the output image, keeping aspect ratio"
+                                        >Height:</label
+                                    >
+
+                                    <input
+                                        type="number"
+                                        id="export-height"
+                                        min="1"
+                                    />
+
+                                    <select id="export-unit">
+                                        <option value="px">px</option>
+
+                                        <option value="cm">cm</option>
+                                    </select>
+                                </div>
+
+                                <div
+                                    class="form-row"
+                                    id="dpi-row"
+                                    style="display: none"
+                                >
+                                    <label for="export-dpi">DPI:</label>
+
+                                    <input
+                                        type="number"
+                                        id="export-dpi"
+                                        min="1"
+                                        value="300"
+                                    />
+                                </div>
+
+                                <div class="buttons">
+                                    <button type="button" id="download-btn">
+                                        Download as PNG
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="output">
+                    <div id="output-placeholder">
+                        Please choose an image to start.
+                    </div>
+                    <div id="info-display"></div>
+                    <canvas id="pattern-canvas"></canvas>
+                </div>
+            </main>
+            <canvas id="source-canvas" style="display: none"></canvas>
+        </div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
