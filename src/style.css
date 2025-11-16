@@ -39,6 +39,21 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+@media (max-width: 750px) {
+    html main {
+        grid-template-columns: 1fr;
+    }
+
+    html .output {
+        flex-direction: column-reverse; /* stats at the bottom */
+    }
+
+    html #info-display {
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         /* Dark Theme Variables */
