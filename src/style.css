@@ -110,6 +110,15 @@ h1 {
     color: var(--primary-bg);
 }
 
+#copyright {
+    font-family: var(--font-secondary);
+    color: var(--primary-bg);
+    grid-column: 2;
+    font-size: 1.2rem;
+    text-align: right;
+    margin-right: 1rem;
+}
+
 main {
     display: grid;
     grid-template-columns: 300px 1fr;
