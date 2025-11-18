@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Germania One";
-    src: url("GermaniaOne-Regular.ttf");
+    src: url("../GermaniaOne-Regular.ttf"); /** style is under the assets/ folder */
 }
 
 :root {
