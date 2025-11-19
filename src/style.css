@@ -41,7 +41,8 @@
 
 @media (max-width: 750px) {
     html main {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
 
     html .output {
