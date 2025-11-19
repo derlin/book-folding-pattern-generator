@@ -17,8 +17,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  # Make vite use this as base for all links in the index.html
+  APP_BASE_URL: https://book-folding-pattern-generator.derlin.ch
+
 jobs:
-  # Single deploy job since we're just deploying
   build:
     runs-on: ubuntu-latest
     steps:
