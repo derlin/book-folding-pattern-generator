@@ -128,20 +128,20 @@ export class UI {
             <span class="chip-value highlight">${lineCount}</span>
             <span class="chip-label">Lines</span>
           </div>
-          <div class="info-chip" title="Estimated number of pages required for a 'Fold Only' project. Each line corresponds to two pages.">
+          <div class="info-chip" title="Estimated number of pages required for a 'Cut & Fold' project. Each line corresponds to 2 page numbers.">
             <span class="chip-icon">📄</span>
             <span class="chip-value highlight">${lineCount * 2}</span>
-            <span class="chip-label">Pages (Fold Only)</span>
+            <span class="chip-label">Pages (Cut & Fold)</span>
           </div>
           <div class="info-chip" title="Total number of individual folded segments in the pattern.">
             <span class="chip-icon">✂️</span>
             <span class="chip-value highlight">${segmentsCount}</span>
             <span class="chip-label">Segments</span>
           </div>
-          <div class="info-chip" title="Estimated number of pages required for a 'Cut & Fold' project. Each segment corresponds to two pages.">
+          <div class="info-chip" title="Estimated number of pages required for a 'Fold Only' project. Each segment corresponds to 2 page numbers.">
             <span class="chip-icon">📚</span>
             <span class="chip-value highlight">${segmentsCount * 2}</span>
-            <span class="chip-label">Pages (Cut & Fold)</span>
+            <span class="chip-label">Pages (Fold Only)</span>
           </div>
         `;
       }
