@@ -115,6 +115,7 @@ export class UI {
           params.sourceImage,
           params.resize,
           params.transparentIsWhite,
+          params.threshold,
         );
         this.trim = this.pixelLogic.trim(this.imageData);
         const { lineCount, segmentsCount } = this.generator.generate(

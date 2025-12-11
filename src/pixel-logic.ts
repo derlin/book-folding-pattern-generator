@@ -30,7 +30,12 @@ export class PixelLogic {
     });
   }
 
-  public processImage(image: HTMLImageElement, resize: number, transparentIsWhite: boolean): ImageData {
+  public processImage(
+    image: HTMLImageElement,
+    resize: number,
+    transparentIsWhite: boolean,
+    threshold: number,
+  ): ImageData {
     const newWidth = Math.floor(image.width * (resize / 100));
     const newHeight = Math.floor(image.height * (resize / 100));
 
@@ -45,20 +50,13 @@ export class PixelLogic {
 
     // Black and white
     for (let i = 0; i < data.length; i += 4) {
-      if (transparentIsWhite) {
-        const alpha = data[i + 3];
-        if (alpha === 0) { // Fully transparent, treat as white
-          data[i] = 255;
-          data[i + 1] = 255;
-          data[i + 2] = 255;
-        } else {
-          const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-          const color = avg > 128 ? 255 : 0;
-          data[i] = data[i + 1] = data[i + 2] = color;
-        }
-      } else { // Original logic if transparentIsWhite is false
+      const isTransparent = data[i + 3] === 0; // Fully transparent
+      if (isTransparent) {
+        data[i] = data[i + 1] = data[i + 2] = transparentIsWhite ? 255 : 0;
+      } else {
+        // Average the pixels and compares it with the input threshold (default to 128)
         const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        const color = avg > 128 ? 255 : 0;
+        const color = avg > threshold ? 255 : 0;
         data[i] = data[i + 1] = data[i + 2] = color;
       }
     }
