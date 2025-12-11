@@ -16,7 +16,7 @@ export interface AppParameters {
 
   // Export
   exportHeight: number | null;
-  exportUnit: "px" | "cm";
+  exportUnit: 'px' | 'cm';
   exportDpi: number;
 }
 
@@ -38,19 +38,17 @@ export class Parameters {
 
   constructor() {
     this.params = this.defaults();
-    this.imageResize = this._get<HTMLInputElement>("image-resize");
-    this.transparentIsWhiteInput = this._get<HTMLInputElement>(
-      "transparent-is-white",
-    );
-    this.thresholdInput = this._get<HTMLInputElement>("bw-threshold");
-    this.stripesSpacing = this._get<HTMLInputElement>("stripes-spacing");
-    this.lineThickness = this._get<HTMLInputElement>("line-thickness");
-    this.horizontalSpacing = this._get<HTMLInputElement>("horizontal-stretch");
-    this.padding = this._get<HTMLInputElement>("padding");
-    this.helperLines = this._get<HTMLInputElement>("helper-lines");
-    this.exportHeight = this._get<HTMLInputElement>("export-height");
-    this.exportUnit = this._get<HTMLSelectElement>("export-unit");
-    this.exportDpi = this._get<HTMLInputElement>("export-dpi");
+    this.imageResize = this._get<HTMLInputElement>('image-resize');
+    this.transparentIsWhiteInput = this._get<HTMLInputElement>('transparent-is-white');
+    this.thresholdInput = this._get<HTMLInputElement>('bw-threshold');
+    this.stripesSpacing = this._get<HTMLInputElement>('stripes-spacing');
+    this.lineThickness = this._get<HTMLInputElement>('line-thickness');
+    this.horizontalSpacing = this._get<HTMLInputElement>('horizontal-stretch');
+    this.padding = this._get<HTMLInputElement>('padding');
+    this.helperLines = this._get<HTMLInputElement>('helper-lines');
+    this.exportHeight = this._get<HTMLInputElement>('export-height');
+    this.exportUnit = this._get<HTMLSelectElement>('export-unit');
+    this.exportDpi = this._get<HTMLInputElement>('export-dpi');
     this.parse();
   }
 
@@ -70,7 +68,7 @@ export class Parameters {
       padding: 10,
       helperLines: true,
       exportHeight: null,
-      exportUnit: "px",
+      exportUnit: 'px',
       exportDpi: 300,
     };
   }
@@ -85,24 +83,20 @@ export class Parameters {
     this.params.padding = this.padding.valueAsNumber;
     this.params.helperLines = this.helperLines.checked;
     this.params.exportHeight = this.exportHeight.valueAsNumber || null;
-    this.params.exportUnit = this.exportUnit.value as "px" | "cm";
+    this.params.exportUnit = this.exportUnit.value as 'px' | 'cm';
     this.params.exportDpi = this.exportDpi.valueAsNumber;
     return this.validate();
   }
 
   public validate(): boolean {
     let valid = true;
-    const validateInput = (
-      input: HTMLInputElement,
-      min: number,
-      max: number,
-    ) => {
+    const validateInput = (input: HTMLInputElement, min: number, max: number) => {
       const value = input.valueAsNumber;
       if (isNaN(value) || value < min || value > max) {
         input.setCustomValidity(`Must be between ${min} and ${max}`);
         valid = false;
       } else {
-        input.setCustomValidity("");
+        input.setCustomValidity('');
       }
     };
 

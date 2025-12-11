@@ -60,7 +60,7 @@ export class PixelLogic {
         data[i] = data[i + 1] = data[i + 2] = color;
       }
     }
-    
+
     this.sourceCanvas.width = newWidth;
     this.sourceCanvas.height = newHeight;
     this.sourceCtx.putImageData(imageData, 0, 0);
@@ -68,14 +68,23 @@ export class PixelLogic {
     return imageData;
   }
 
-  public trim(imageData: ImageData): { x: number, y: number, width: number, height: number } {
+  public trim(imageData: ImageData): {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  } {
     const { data, width, height } = imageData;
-    let minX = width, minY = height, maxX = 0, maxY = 0;
+    let minX = width,
+      minY = height,
+      maxX = 0,
+      maxY = 0;
 
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        if (data[i] === 0) { // black pixel
+        if (data[i] === 0) {
+          // black pixel
           if (x < minX) minX = x;
           if (x > maxX) maxX = x;
           if (y < minY) minY = y;
@@ -84,6 +93,11 @@ export class PixelLogic {
       }
     }
 
-    return { x: minX, y: minY, width: maxX - minX + 1, height: maxY - minY + 1 };
+    return {
+      x: minX,
+      y: minY,
+      width: maxX - minX + 1,
+      height: maxY - minY + 1,
+    };
   }
 }

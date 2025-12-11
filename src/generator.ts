@@ -13,7 +13,11 @@ export class Generator {
     this.patternCtx = ctx;
   }
 
-  public generate(params: AppParameters, imageData: ImageData, trim: { x: number, y: number, width: number, height: number }): { lineCount: number, segmentsCount: number } {
+  public generate(
+    params: AppParameters,
+    imageData: ImageData,
+    trim: { x: number; y: number; width: number; height: number },
+  ): { lineCount: number; segmentsCount: number } {
     const { stripesSpacing, lineThickness, horizontalSpacing, padding, helperLines } = params;
     const { data, width } = imageData;
 
@@ -33,7 +37,8 @@ export class Generator {
         this.patternCtx.moveTo(newX, 0);
         this.patternCtx.lineTo(newX, this.patternCanvas.height);
         this.patternCtx.lineWidth = 1;
-        this.patternCtx.strokeStyle = lineCount % 10 === 0 ? 'red' : (lineCount % 2 === 0 ? 'gray' : 'transparent');
+        this.patternCtx.strokeStyle =
+          lineCount % 10 === 0 ? 'red' : lineCount % 2 === 0 ? 'gray' : 'transparent';
         this.patternCtx.stroke();
       }
 
@@ -55,15 +60,15 @@ export class Generator {
         }
       }
       if (startY !== -1) {
-        segments.push({ start: startY, end: trim.y + trim.height -1 });
+        segments.push({ start: startY, end: trim.y + trim.height - 1 });
       }
 
       this.patternCtx.lineWidth = lineThickness;
       this.patternCtx.strokeStyle = 'black';
-      segments.forEach(seg => {
+      segments.forEach((seg) => {
         this.patternCtx.beginPath();
-        this.patternCtx.moveTo(newX, (seg.start - trim.y) + padding);
-        this.patternCtx.lineTo(newX, (seg.end - trim.y) + padding + 1);
+        this.patternCtx.moveTo(newX, seg.start - trim.y + padding);
+        this.patternCtx.lineTo(newX, seg.end - trim.y + padding + 1);
         this.patternCtx.stroke();
         segmentsCount++;
       });

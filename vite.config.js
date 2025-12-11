@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
-import sitemap from "vite-plugin-sitemap";
+import { defineConfig } from 'vite';
+import sitemap from 'vite-plugin-sitemap';
 
-const BASE_URL = process.env.APP_BASE_URL || "";
-const HOSTNAME = BASE_URL || "http://localhost:5173";
+const BASE_URL = process.env.APP_BASE_URL || '';
+const HOSTNAME = BASE_URL || 'http://localhost:5173';
 
 export default defineConfig({
   // Setting base to an empty string forces relative paths for all assets.
