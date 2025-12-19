@@ -19,7 +19,7 @@ concurrency:
 
 env:
   # Make vite use this as base for all links in the index.html
-  APP_BASE_URL: https://book-folding-pattern-generator.derlin.ch
+  APP_BASE_URL: https://bookfold.derlin.ch
 
 jobs:
   build:
