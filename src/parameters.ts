@@ -2,6 +2,7 @@ export interface AppParameters {
   // Source
   sourceImage: HTMLImageElement | null;
   resize: number;
+  inverseColors: boolean;
   transparentIsWhite: boolean;
   threshold: number;
 
@@ -26,6 +27,7 @@ export class Parameters {
   // Form elements
   private imageResize: HTMLInputElement;
   private transparentIsWhiteInput: HTMLInputElement;
+  private inverseColorsInput: HTMLInputElement;
   private thresholdInput: HTMLInputElement;
   private stripesSpacing: HTMLInputElement;
   private lineThickness: HTMLInputElement;
@@ -40,6 +42,7 @@ export class Parameters {
     this.params = this.defaults();
     this.imageResize = this._get<HTMLInputElement>('image-resize');
     this.transparentIsWhiteInput = this._get<HTMLInputElement>('transparent-is-white');
+    this.inverseColorsInput = this._get<HTMLInputElement>('inverse-colors');
     this.thresholdInput = this._get<HTMLInputElement>('bw-threshold');
     this.stripesSpacing = this._get<HTMLInputElement>('stripes-spacing');
     this.lineThickness = this._get<HTMLInputElement>('line-thickness');
@@ -60,6 +63,7 @@ export class Parameters {
     return {
       sourceImage: null,
       resize: 100,
+      inverseColors: false,
       transparentIsWhite: true,
       threshold: 128,
       stripesSpacing: 8,
@@ -75,6 +79,7 @@ export class Parameters {
 
   public parse(): boolean {
     this.params.resize = this.imageResize.valueAsNumber;
+    this.params.inverseColors = this.inverseColorsInput.checked;
     this.params.transparentIsWhite = this.transparentIsWhiteInput.checked;
     this.params.threshold = this.thresholdInput.valueAsNumber;
     this.params.stripesSpacing = this.stripesSpacing.valueAsNumber;

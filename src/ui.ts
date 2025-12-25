@@ -94,6 +94,7 @@ export class UI {
         this.imageData = this.pixelLogic.processImage(
           params.sourceImage,
           params.resize,
+          params.inverseColors,
           params.transparentIsWhite,
           params.threshold,
         );

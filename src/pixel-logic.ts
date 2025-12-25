@@ -33,6 +33,7 @@ export class PixelLogic {
   public processImage(
     image: HTMLImageElement,
     resize: number,
+    inverseColors: boolean,
     transparentIsWhite: boolean,
     threshold: number,
   ): ImageData {
@@ -48,15 +49,18 @@ export class PixelLogic {
     const imageData = tempCtx.getImageData(0, 0, newWidth, newHeight);
     const data = imageData.data;
 
+    const white = inverseColors ? 0 : 255;
+    const black = inverseColors ? 255 : 0;
+
     // Black and white
     for (let i = 0; i < data.length; i += 4) {
       const isTransparent = data[i + 3] === 0; // Fully transparent
       if (isTransparent) {
-        data[i] = data[i + 1] = data[i + 2] = transparentIsWhite ? 255 : 0;
+        data[i] = data[i + 1] = data[i + 2] = transparentIsWhite ? white : black;
       } else {
         // Average the pixels and compares it with the input threshold (default to 128)
         const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        const color = avg > threshold ? 255 : 0;
+        const color = avg > threshold ? white : black;
         data[i] = data[i + 1] = data[i + 2] = color;
       }
     }
