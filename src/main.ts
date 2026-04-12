@@ -19,6 +19,30 @@ class App {
 
   init() {
     console.log('App initialized');
+    this.initTutorialBanner();
+  }
+
+  private initTutorialBanner() {
+    const banner = document.getElementById('tutorial-banner');
+    const closeBtn = document.querySelector('.banner-close') as HTMLButtonElement;
+
+    if (!banner || !closeBtn) return;
+
+    // Check if user has dismissed the banner before
+    const isDismissed = localStorage.getItem('tutorial-banner-dismissed') === 'true';
+
+    if (isDismissed) {
+      banner.classList.add('hidden');
+    } else {
+      // Show banner by default
+      banner.classList.remove('hidden');
+    }
+
+    // Handle close button click
+    closeBtn.addEventListener('click', () => {
+      banner.classList.add('hidden');
+      localStorage.setItem('tutorial-banner-dismissed', 'true');
+    });
   }
 }
 

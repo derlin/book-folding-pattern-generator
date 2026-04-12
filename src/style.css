@@ -376,3 +376,101 @@ button:focus-visible {
   display: none;
   margin: 10px auto;
 }
+
+.banner {
+  background: linear-gradient(135deg, var(--text-color-secondary), rgba(233, 30, 99, 0.8));
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.banner.hidden {
+  display: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.banner-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.banner-link {
+  color: white;
+  text-decoration: underline;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.banner-link:hover {
+  opacity: 0.9;
+}
+
+.banner-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+  min-width: auto;
+  font-weight: 300;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.banner-close:hover {
+  opacity: 1;
+}
+
+@media (max-width: 750px) {
+  .banner {
+    position: relative;
+    padding-right: 3rem;
+  }
+
+  .banner-content {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .banner-text {
+    font-size: 0.9rem;
+  }
+
+  .banner-link {
+    white-space: normal;
+  }
+
+  .banner-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  }
+}
