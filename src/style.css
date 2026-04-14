@@ -111,6 +111,35 @@ h1 {
   color: var(--primary-bg);
 }
 
+.header-with-help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.help-icon {
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--primary-bg);
+}
+
+.help-icon:hover {
+  opacity: 1;
+}
+
+.help-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
 #copyright {
   font-family: var(--font-secondary);
   color: var(--primary-bg);
